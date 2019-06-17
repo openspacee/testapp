@@ -118,3 +118,46 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOG_PATH = os.path.join(BASE_DIR, 'logs')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'request_id': {
+            '()': 'local_requests.filters.RequestIDFilter'
+        }
+    },
+    'formatters': {
+        'standard': {
+            'format': '[%(asctime)s] [%(levelname)s] [%(request_id)s] '
+                      '[%(name)s::%(lineno)d] >>>>>>>func: %(funcName)s : %(message)s'
+        },
+    },
+    'handlers': {
+        'default': {
+            'level': 'DEBUG',
+            'class': 'utils.log_handlers.MyLoggerHandler',
+            'filename': os.path.join(LOG_PATH, 'testapp'),
+            'when': 'D',
+            'backupCount': 365,
+            'formatter': 'standard',
+            'filters': ['request_id'],
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+            'filters': ['request_id'],
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'default'],
+            'level': 'INFO',
+            'propagate': False
+        }
+    }
+}
