@@ -13,5 +13,5 @@ if [[ $# -ge 1 ]]; then
     fi
 fi
 
-wsgi_path=`dirname $0`/../ccpservice
+wsgi_path=`dirname $0`/../testapp
 cd ${wsgi_path} && gunicorn -w 4 --threads 40 -b 0.0.0.0:80 ${wsgi_name}:application
