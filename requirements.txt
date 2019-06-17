@@ -1,0 +1,6 @@
+django==2.2.1
+djangorestframework==3.9.3
+mysqlclient==1.4.1
+httplib2==0.12.3
+requests==2.21.0
+gunicorn==19.9.0
