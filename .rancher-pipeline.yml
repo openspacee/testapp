@@ -6,7 +6,7 @@ stages:
       buildContext: .
       tag: lze/testapp
       pushRemote: true
-      registry: registry.cn-hangzhou.aliyuncs.com
+      registry: harbor.capitalonline.net/test/cp:v1
 - name: run
   steps:
   - runScriptConfig:
