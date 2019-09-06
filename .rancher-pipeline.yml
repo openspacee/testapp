@@ -1,0 +1,16 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: lze/testapp
+      pushRemote: true
+      registry: registry.cn-hangzhou.aliyuncs.com
+- name: run
+  steps:
+  - runScriptConfig:
+      image: registry.cn-hangzhou.aliyuncs.com/lze/testapp
+      shellScript: bash bin/run_api.sh
+timeout: 60
+notification: {}
