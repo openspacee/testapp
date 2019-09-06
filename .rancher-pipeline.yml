@@ -4,9 +4,9 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: lze/testapp
+      tag: test/cp:v1
       pushRemote: true
-      registry: harbor.capitalonline.net/test/cp:v1
+      registry: harbor.capitalonline.net
 - name: run
   steps:
   - runScriptConfig:
