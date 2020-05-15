@@ -1,0 +1,16 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: test/corevm:v1
+      pushRemote: true
+      registry: harbor.capitalonline.net
+- name: run
+  steps:
+  - runScriptConfig:
+      image: harbor.capitalonline.net/test/corevm:v1
+      shellScript: bash bin/run_api.sh
+timeout: 60
+notification: {}
